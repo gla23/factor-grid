@@ -32,7 +32,7 @@ export const GridElement = (props: GridElementProps) => {
   const [clicked, toggleClicked] = useURLCoordinates(
     "visible",
     { x: data.i, y: data.j },
-    data.number === "1",
+    data.i === 0 && data.j === 0,
   );
   const [masked, toggleMasked] = useURLCoordinates(
     "masked",

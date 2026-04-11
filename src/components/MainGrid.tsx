@@ -32,6 +32,7 @@ export function MainGrid(props: MainGridProps) {
   const [yN] = useURLState("yN", axesLengths[3]);
   const [xAxisFactor] = useURLState("xAxisFactor", 2);
   const [yAxisFactor] = useURLState("yAxisFactor", 3);
+  const [centralNumber] = useURLState("centralNumber", 1);
   const [base] = useURLState("base", 10);
 
   const precalc: Data[][] = [];
@@ -40,7 +41,10 @@ export function MainGrid(props: MainGridProps) {
     for (let j = 0; j < xP + xN + 1; j++) {
       const row = yP - i;
       const column = j - xN;
-      const number = Math.pow(yAxisFactor, row) * Math.pow(xAxisFactor, column);
+      const number =
+        centralNumber *
+        Math.pow(yAxisFactor, row) *
+        Math.pow(xAxisFactor, column);
       precalc[i][j] = {
         number: number.toString(base).slice(0, 10),
         i: row,

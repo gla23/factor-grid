@@ -28,6 +28,7 @@ function App() {
   const yNState = useURLState("yN", axesLengths[3]);
   const xAxisFactorState = useURLState("xAxisFactor", 2);
   const yAxisFactorState = useURLState("yAxisFactor", 3);
+  const centralNumberState = useURLState("centralNumber", 1);
   const baseState = useURLState("base", 10);
 
   const estimationModalState = useState<null | Estimation>(null);
@@ -108,7 +109,8 @@ function App() {
           <NumberInput state={yNState}>Y-axis negative length</NumberInput> */}
           <NumberInput state={xAxisFactorState}>X-axis factor:</NumberInput>
           <NumberInput state={yAxisFactorState}>Y-axis factor:</NumberInput>
-          <NumberInput state={baseState}>Display base:</NumberInput>
+          <NumberInput state={centralNumberState}>Center value:</NumberInput>
+          <NumberInput state={baseState}>Base:</NumberInput>
           <div
             style={{
               textAlign: "left",
