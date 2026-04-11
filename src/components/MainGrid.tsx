@@ -4,6 +4,7 @@ import { useURLState } from "../utils/useURLState";
 
 export interface Data {
   number: string;
+  value: number;
   i: number;
   j: number;
 }
@@ -46,6 +47,7 @@ export function MainGrid(props: MainGridProps) {
         Math.pow(xAxisFactor, column);
       precalc[i][j] = {
         number: number.toString(base).slice(0, 10),
+        value: number,
         i: row,
         j: column,
       };

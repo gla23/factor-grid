@@ -13,7 +13,9 @@ I mostly use it to help me with basic things that I should already know. It make
 - You can use the tool to find good replacements for primes higher than 5 and their multiples. Click on a number to add an approximation which will then fill the boxes in the bottom right to show your coverage of 1-100. The "error fractions" of these multiplier approximations are also displayed.
 - You can give the axes factors other than 2 and 3 (bad idea)
 - You can display the numbers in bases other than 10 (bad idea)
-- You can fiddle with the settings to create shareable pages due to the data being in URL params. I use these to add iframes into my Anki decks e.g. [bits and bytes](https://gla23.github.io/factor-axes/?visible=0.0_0.4_0.8_0.10_0.3_1.3_0.5&xP=10&xN=1&yP=2&yN=1&blind=true&just-grid=true). You can pick specific numbers you want to show, or mask numbers you want to be quizzed on.
+- You can fiddle with the settings to create shareable pages due to the data being in URL params. I use these to add iframes into my Anki decks e.g. [bits and bytes](https://gla23.github.io/factor-axes/?visible=0.0_0.4_0.8_0.10_0.3_1.3_0.5&xP=10&xN=1&yP=2&yN=1&blind=true&just-grid=true). You can pick specific coordinates with `visible` and `masked`, or specific values with `show` and `hide`. Coordinate state overrides value state per cell, so you can still click to reveal a `hide`d number or mask a `show`n one.
+- Example: [Show powers of two](https://gla23.github.io/factor-axes/?show=1_2_4_8_16_32_64_128_256&xP=8&xN=1&yP=2&yN=1&blind=true&just-grid=true)
+- Example: [Center 7 and hide one step](https://gla23.github.io/factor-axes/?centralNumber=7&show=7_14_21_28_42&hide=28&xP=3&xN=1&yP=2&yN=1&blind=true&just-grid=true)
 
 <br>
 
@@ -26,10 +28,8 @@ Other stuff:
 - Squaring and Surds are fun - perhaps very intuitive for children?
 - Each number has a line - it's more like contours.
 - Using major system to aid memory. This is exponentially efficient over "multiplication tables"
-- Alternate universe where 7 is in the center (I should add an input for the center number)
 - Methods of adding e.g. holding two numbers them combining them when matching patterns e.g. a box + west = north-west. (2 + 1 = 3, or that pattern slid around onto any other set of numbers).
 
 To do:
 
-- The default values in that hook should be centralised not kept in sync in the args
 - Stop it being so stretched horizontally when printing

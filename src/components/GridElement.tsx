@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { animated, useSpring } from "react-spring";
 import { Data, Estimations, Estimation } from "./MainGrid";
-import { NumberObject, numberObject, useURLState } from "../utils/useURLState";
+import {
+  NumberList,
+  NumberObject,
+  numberList,
+  numberObject,
+  useURLState,
+} from "../utils/useURLState";
 import { removeFluff } from "./Summary";
 import { useURLCoordinates } from "./Coordinates";
 import { limitRecurringDecimals } from "../utils/limitRecurringDecimals";
@@ -14,6 +20,12 @@ interface GridElementProps {
   blind: boolean;
 }
 
+const matchesNumber = (numbers: NumberList, value: number) =>
+  numbers?.some((candidate) => {
+    const tolerance = Math.max(1e-9, Math.abs(value) * 1e-9);
+    return Math.abs(candidate - value) <= tolerance;
+  }) ?? false;
+
 export const GridElement = (props: GridElementProps) => {
   const { estimations, data, setEstimation, blind } = props;
 
@@ -23,6 +35,8 @@ export const GridElement = (props: GridElementProps) => {
   const [yN] = useURLState("yN");
   const [hover, setHover] = useState(false);
   const [printable] = useURLState("printable");
+  const [showNumbers] = useURLState<NumberList>("show", null, numberList);
+  const [hideNumbers] = useURLState<NumberList>("hide", null, numberList);
   const mainColour = printable ? "rgba(119, 220, 119, 1)" : "#060";
   const mainThickness = printable ? 2 : 1;
   const secondColour = printable ? "#acacacff" : "#404040";
@@ -39,12 +53,16 @@ export const GridElement = (props: GridElementProps) => {
     false,
   );
 
-  const showNumber = clicked || (!blind && hover) || !blind;
-  const showMask = masked && !showNumber;
+  const shownByNumber = matchesNumber(showNumbers, data.value);
+  const hiddenByNumber = matchesNumber(hideNumbers, data.value);
+  const explicitlyShown = clicked || (shownByNumber && !masked);
+  const explicitlyHidden = masked || (hiddenByNumber && !clicked);
+  const showNumber = (explicitlyShown && !explicitlyHidden) || (!blind && hover) || !blind;
+  const showMask = explicitlyHidden && !showNumber;
   const showHover = hover && !masked;
 
   const estimation = estimations?.[data.i]?.[data.j];
-  const errFraction = estimation ? estimation / parseFloat(data.number) : null;
+  const errFraction = estimation ? estimation / data.value : null;
   if (!estimations) return null;
 
   return (

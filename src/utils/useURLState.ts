@@ -165,6 +165,19 @@ export const numberObject = {
     ),
 };
 
+export type NumberList = number[] | null;
+export const numberList = {
+  serialize: (value: NumberList) => (value ? value.join("_") : ""),
+  deserialize: (string: string): NumberList => {
+    if (!string || string.trim() === "") return null;
+    const values = string
+      .split(/[,_]/)
+      .map((part) => parseFloat(part.trim()))
+      .filter((value) => !Number.isNaN(value));
+    return values.length > 0 ? values : null;
+  },
+};
+
 /**
  * A hook that syncs state with URL search parameters
  * Safe for use across multiple components
