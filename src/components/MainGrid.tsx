@@ -1,7 +1,6 @@
 import { GridElement } from "./GridElement";
 import { StatePair } from "../utils/StatePair";
 import { useURLState } from "../utils/useURLState";
-import { axesLengths } from "../App";
 
 export interface Data {
   number: string;
@@ -24,16 +23,16 @@ export function MainGrid(props: MainGridProps) {
   const [estimations] = props.estimationsState;
   const [, setEstimation] = props.estimationModalState;
 
-  const [gridLines] = useURLState("grid-lines", true);
-  const [blind] = useURLState("blind", false);
-  const [xP] = useURLState("xP", axesLengths[0]);
-  const [xN] = useURLState("xN", axesLengths[1]);
-  const [yP] = useURLState("yP", axesLengths[2]);
-  const [yN] = useURLState("yN", axesLengths[3]);
-  const [xAxisFactor] = useURLState("xAxisFactor", 2);
-  const [yAxisFactor] = useURLState("yAxisFactor", 3);
-  const [centralNumber] = useURLState("centralNumber", 1);
-  const [base] = useURLState("base", 10);
+  const [gridLines] = useURLState("grid-lines");
+  const [blind] = useURLState("blind");
+  const [xP] = useURLState("xP");
+  const [xN] = useURLState("xN");
+  const [yP] = useURLState("yP");
+  const [yN] = useURLState("yN");
+  const [xAxisFactor] = useURLState("xAxisFactor");
+  const [yAxisFactor] = useURLState("yAxisFactor");
+  const [centralNumber] = useURLState("centralNumber");
+  const [base] = useURLState("base");
 
   const precalc: Data[][] = [];
   for (let i = 0; i < yP + yN + 1; i++) {

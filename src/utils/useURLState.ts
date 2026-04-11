@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
+import { urlStateDefaults } from "../defaults";
 
 type SetStateAction<S> = S | ((prevState: S) => S);
 
@@ -8,6 +9,8 @@ interface UseURLStateOptions<T> {
   replace?: boolean;
   preventNull?: boolean;
 }
+
+type KnownURLStateKey = keyof typeof urlStateDefaults;
 
 // Global state manager to coordinate multiple hook instances
 class URLStateManager {
@@ -172,9 +175,18 @@ export const numberObject = {
  */
 export const useURLState = <T>(
   key: string,
-  defaultValue: T,
+  defaultValue?: T,
   options: UseURLStateOptions<T> = {},
 ): [T, (value: SetStateAction<T>) => void] => {
+  const resolvedDefaultValue =
+    defaultValue !== undefined
+      ? defaultValue
+      : (urlStateDefaults[key as KnownURLStateKey] as T | undefined);
+
+  if (resolvedDefaultValue === undefined) {
+    throw new Error(`No default value configured for URL state key "${key}"`);
+  }
+
   const {
     serialize = (value: T): string => {
       if (value === null || value === undefined) return "";
@@ -183,7 +195,7 @@ export const useURLState = <T>(
       return json.replaceAll(" ", "");
     },
     deserialize = (value: string): T => {
-      if (!value) return defaultValue;
+      if (!value) return resolvedDefaultValue;
       try {
         return JSON.parse(value) as T;
       } catch {
@@ -198,16 +210,21 @@ export const useURLState = <T>(
   const optionsRef = useRef({
     serialize,
     deserialize,
-    defaultValue,
+    defaultValue: resolvedDefaultValue,
     preventNull,
   });
-  optionsRef.current = { serialize, deserialize, defaultValue, preventNull };
+  optionsRef.current = {
+    serialize,
+    deserialize,
+    defaultValue: resolvedDefaultValue,
+    preventNull,
+  };
 
   // Get initial value from URL
   const getValueFromURL = useCallback((): T => {
     const urlValue = urlStateManager.getCurrentValue(key);
-    return urlValue !== null ? deserialize(urlValue) : defaultValue;
-  }, [key, deserialize, defaultValue]);
+    return urlValue !== null ? deserialize(urlValue) : resolvedDefaultValue;
+  }, [key, deserialize, resolvedDefaultValue]);
 
   const [state, setState] = useState<T>(getValueFromURL);
 

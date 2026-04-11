@@ -14,22 +14,21 @@ import { NumberInput } from "./components/NumberInput";
 import { Check } from "./components/Check";
 import { EstimationModal } from "./components/EstimationModal";
 import { Slider } from "./components/Slider";
-
-export const axesLengths = [5, 2, 3, 2];
+import { axesLengths } from "./defaults";
 function App() {
-  const [justGrid, setJustGrid] = useURLState<boolean>("just-grid", false);
-  const [blind, setBlind] = useURLState("blind", false);
-  const gridLinesState = useURLState("grid-lines", true);
-  const printingState = useURLState("printable", false);
+  const [justGrid, setJustGrid] = useURLState<boolean>("just-grid");
+  const [blind, setBlind] = useURLState("blind");
+  const gridLinesState = useURLState("grid-lines");
+  const printingState = useURLState("printable");
   const percentageErrorState = useState(true);
-  const xPState = useURLState("xP", axesLengths[0]);
-  const xNState = useURLState("xN", axesLengths[1]);
-  const yPState = useURLState("yP", axesLengths[2]);
-  const yNState = useURLState("yN", axesLengths[3]);
-  const xAxisFactorState = useURLState("xAxisFactor", 2);
-  const yAxisFactorState = useURLState("yAxisFactor", 3);
-  const centralNumberState = useURLState("centralNumber", 1);
-  const baseState = useURLState("base", 10);
+  const xPState = useURLState("xP");
+  const xNState = useURLState("xN");
+  const yPState = useURLState("yP");
+  const yNState = useURLState("yN");
+  const xAxisFactorState = useURLState("xAxisFactor");
+  const yAxisFactorState = useURLState("yAxisFactor");
+  const centralNumberState = useURLState("centralNumber");
+  const baseState = useURLState("base");
 
   const estimationModalState = useState<null | Estimation>(null);
   const [estimations, setEstimations] = useState<Estimations>(() => {

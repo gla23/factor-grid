@@ -5,7 +5,6 @@ import { NumberObject, numberObject, useURLState } from "../utils/useURLState";
 import { removeFluff } from "./Summary";
 import { useURLCoordinates } from "./Coordinates";
 import { limitRecurringDecimals } from "../utils/limitRecurringDecimals";
-import { axesLengths } from "../App";
 
 interface GridElementProps {
   data: Data;
@@ -18,12 +17,12 @@ interface GridElementProps {
 export const GridElement = (props: GridElementProps) => {
   const { estimations, data, setEstimation, blind } = props;
 
-  const [xP] = useURLState("xP", axesLengths[0]);
-  const [xN] = useURLState("xN", axesLengths[1]);
-  const [yP] = useURLState("yP", axesLengths[2]);
-  const [yN] = useURLState("yN", axesLengths[3]);
+  const [xP] = useURLState("xP");
+  const [xN] = useURLState("xN");
+  const [yP] = useURLState("yP");
+  const [yN] = useURLState("yN");
   const [hover, setHover] = useState(false);
-  const [printable] = useURLState("printable", false);
+  const [printable] = useURLState("printable");
   const mainColour = printable ? "rgba(119, 220, 119, 1)" : "#060";
   const mainThickness = printable ? 2 : 1;
   const secondColour = printable ? "#acacacff" : "#404040";
@@ -132,8 +131,8 @@ function Text(props: {
 }) {
   const { children, estimation } = props;
   const spring = useSpring({ to: { opacity: props.opacity ?? 1 } });
-  const [printable] = useURLState("printable", false);
-  const [blind] = useURLState("blind", false);
+  const [printable] = useURLState("printable");
+  const [blind] = useURLState("blind");
   const string = String(children);
   const number = typeof children === "string" ? parseFloat(children) : children;
   const fancyDecimals = limitRecurringDecimals(props.children);
