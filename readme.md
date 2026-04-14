@@ -30,6 +30,14 @@ Other stuff:
 - Using major system to aid memory. This is exponentially efficient over "multiplication tables"
 - Methods of adding e.g. holding two numbers them combining them when matching patterns e.g. a box + west = north-west. (2 + 1 = 3, or that pattern slid around onto any other set of numbers).
 
-To do:
+## To do:
 
-- Stop it being so stretched horizontally when printing
+Stop it being so stretched horizontally when printing
+
+Give lines more of an identity feel
+
+- Choose a colour that feels similar to the major system characters that are around that area!
+- Double thickness or other visual effect to make the line have more character
+- Give the lines a special name that matches the visuals and recall those too plus why they're called that?
+
+Use chess pieces e.g. knight for numbers like 12 and 18! Bishop is powers of 6 and 1.5, Rook is powers of 2 and 3!
