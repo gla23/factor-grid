@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { animated, useSpring } from "react-spring";
 import { Data, Estimations, Estimation } from "./MainGrid";
 import {
   NumberList,
@@ -148,7 +147,6 @@ function Text(props: {
   estimation: number | null;
 }) {
   const { children, estimation } = props;
-  const spring = useSpring({ to: { opacity: props.opacity ?? 1 } });
   const [printable] = useURLState("printable");
   const [blind] = useURLState("blind");
   const string = String(children);
@@ -202,19 +200,19 @@ function Text(props: {
   })();
 
   return (
-    <animated.span
+    <span
       style={{
-        ...spring,
         zIndex: 4,
         position: "relative",
         fontWeight: printable ? "bold" : "initial",
         color: printable ? "black" : "white",
         fontSize,
         opacity: Math.min(props.opacity ?? 1, opacity),
+        transition: "opacity 150ms ease",
       }}
     >
       {fancyDecimals}
-    </animated.span>
+    </span>
   );
 }
 
