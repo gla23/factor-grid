@@ -25,19 +25,8 @@ I mostly use it to help me with basic things that I should already know. It make
 
 Other stuff:
 
-- Squaring and Surds are fun - perhaps very intuitive for children?
-- Each number has a line - it's more like contours.
-- Using major system to aid memory. This is exponentially efficient over "multiplication tables"
-- Methods of adding e.g. holding two numbers them combining them when matching patterns e.g. a box + west = north-west. (2 + 1 = 3, or that pattern slid around onto any other set of numbers).
-
-## To do:
-
-Stop it being so stretched horizontally when printing
-
-Give lines more of an identity feel
-
-- Choose a colour that feels similar to the major system characters that are around that area!
-- Double thickness or other visual effect to make the line have more character
-- Give the lines a special name that matches the visuals and recall those too plus why they're called that?
-
-Use chess pieces e.g. knight for numbers like 12 and 18! Bishop is powers of 6 and 1.5, Rook is powers of 2 and 3!
+- Squaring and Surds are fun - perhaps quite intuitive for children?
+- Each number has a line - it's more like contours than points.
+- Using major system to aid memory. This is exponentially efficient over memorising "multiplication tables"
+- Explore methods of adding e.g. holding two numbers them combining them when matching patterns e.g. a box + west = north-west. (2 + 1 = 3, or that pattern slid around onto any other set of numbers).
+- See todo.md
